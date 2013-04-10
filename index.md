@@ -22,6 +22,8 @@ In `_config.yml` remember to specify your own data:
       twitter : username
 
 The theme should reference these variables whenever needed.
+
+My weibo : @学士_
     
 ## Sample Posts
 
