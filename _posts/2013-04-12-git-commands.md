@@ -8,7 +8,6 @@ tags: [git]
 {% include JB/setup %}
 
 使用diff查看文件更改信息
-{% highlight %}
 查看未暂存文件的变化（与最近一次的暂存/提交比较）
 $ git diff
 查看已暂存文件的变化（与最近一次提交比较）
@@ -19,10 +18,7 @@ $ git diff 3e4e
 $ git diff 3e4e 5d5a
 具体到某个文件
 $ git diff 3e4e 5d5a index.md
-{% endhighlight %}
 
 查看任意版本下的某个文件
-{% hightlight %}
 //查看某个版本下某个文件内容
 $ git show 5d5a index.md
-{% endhighlight %}
