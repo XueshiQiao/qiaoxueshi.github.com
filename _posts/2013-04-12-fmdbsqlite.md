@@ -8,15 +8,17 @@ tags: [iOS, FMDB, sqlite]
 {% include JB/setup %}
 
 [FMDB](https://github.com/ccgus/fmdb)是Objective-C上操作Sqlite的开源库，与原生的操作sqlite数据库相比，有以下几个优点：
+
 1. 操作方便、简单、写出的代码优雅，易于维护;
 2. 可以采用一定的方式保证线程安全，用着更放心，经过试用，还没有出现过锁死数据库文件以及Crash的现象。
 
 FMDatabase不是线程安全的，一个FMDatabase对象不能在多线程中使用，为了保证线程安全，可以在FMDB中采取下面两种方式：
+
 1. 每个线程都创建一个FMDatabase对象，使用之前打开连接，用完关闭销毁；
 2. 使用FMDatabaseQueue来保证线程安全，一个FMDatabaseQueue的对象可以在多线程中共享使用。
 
 使用FMDatabase时，一般是这样来写：
-<pre><code>
+{% highlight c linenos %}
 //创建一个 FMDatabase的对象
 FMDatabase *db = [FMDatabase databaseWithPath:@"/tmp/tmp.db"];
 //判断db是否打开，在使用之前一定要确保是打开的
@@ -31,7 +33,7 @@ if ([db open]) {
 	[db close];
 }
 db = nil;
-</code></pre>
+{% endhighlight %}
 
 上面的这段代码是使用FMDatabase操作数据库的一个典型的使用方式，可以看到，其实我们关注的只是使用它来对数据库进行增删改查的操作，却每次都要写这些打开和关闭的操作，代码也显得臃肿，bad smell。用过Java中著名的Spring框架的同学都记得里面对数据库操作提供了一个Template的机制，比如JdbcTemplate、HibernateTemplate等，使用回调函数非常优雅的分离了创建连接、关闭连接和使用数据库连接操作数据库，下面就来模拟这个实现。
 首先做个抽象，在上面代码的真正的逻辑中，我们只要拿到db变量就能满足我们的需要了，那么我们就把这一块抽象出来，在这里我们使用oc里的block来实现回调功能：
