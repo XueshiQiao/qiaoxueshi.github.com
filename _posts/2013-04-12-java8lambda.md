@@ -2,7 +2,7 @@
 layout: post
 title: "初探Java8新特性之lambda表达式"
 description: ""
-category:Java 
+category: Java 
 tags: [lambda]
 ---
 {% include JB/setup %}
