@@ -18,6 +18,7 @@ FMDatabase不是线程安全的，一个FMDatabase对象不能在多线程中使
 2. 使用FMDatabaseQueue来保证线程安全，一个FMDatabaseQueue的对象可以在多线程中共享使用。
 
 使用FMDatabase时，一般是这样来写：
+
 {% highlight c linenos %}
 //创建一个 FMDatabase的对象
 FMDatabase *db = [FMDatabase databaseWithPath:@"/tmp/tmp.db"];
@@ -81,6 +82,7 @@ db = nil;
 这样的代码看起来是不是优雅多了呢？我们无需关心数据库的创建和关闭操作，只需要关心我们的业务逻辑就可以了。
 
 历史总是惊人的相似，FMDatabaseQueue的使用就是采用这样的方式来处理的，来看一段fmdb主页上提供的一个例子：
+
 <pre><code>
 FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:aPath];
 [queue inDatabase:^(FMDatabase *db) {
