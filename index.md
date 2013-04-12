@@ -13,7 +13,7 @@ tagline: 关注Java服务端和iOS开发
 </ul>
 
 ###Contact me
-weibo:@学士_
+weibo:[@学士_](http://weibo.com/2js3)
 
 email:qiaoxueshi#gmail.com
 
