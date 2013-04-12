@@ -29,7 +29,7 @@ new Thread(new Runnable() {
 </code>
 </pre>
 类似这种情况的还有swing中button等控件的监听器，如下面代码所示，创建该接口的一个匿名内部类实例作为参数传递到button的addActionListener方法中。
-{% highlight ruby %}
+{% highlight java %}
 
 public interface ActionListener {   
     void actionPerformed(ActionEvent e);  
@@ -43,16 +43,16 @@ button.addActionListener(new ActionListener() {
 
 {% endhighlight %}
 
-l的变量等。lambda表达式就是为了解决这类问题而诞生的。
+这样的代码的缺点是有代码笨重，可读性差，不能引用外面的非final的变量等。lambda表达式就是为了解决这类问题而诞生的。
 
 在介绍Java8中的Lambda表达式之前，首先介绍一个概念叫“函数式接口”（functional interfaces）。对于任意一个Java接口，如果接口中只定义了唯一一个方法，那么这个接口就称之为“函数式接口”。比如JDK中的ActionListener、Runnable、Comparator等接口。
 
 先来看一下Java8中的lambda表达式的使用示例：
 
 创建一个线程：
-```java
+{% highlight java %}
 new Thread(() -> {System.out.println("hello");}).start();
-```
+{% endhighlight %}
 
 可以看到这段代码比上面创建线程的代码精简了很多，也有很好的可读性。
 `() -> {System.out.println(“hello”);} `就是传说中的lambda表达式，等同于上面的`new Runnable()`,lambda大体分为3部分：
@@ -62,71 +62,67 @@ new Thread(() -> {System.out.println("hello");}).start();
 2.中间的是 -> ，用来分割参数和body部分
 
 3.是body部分，可以是一个表达式或者一个语句块。如果是一个表达式，表达式的值会被作为返回值返回；如果是语句块，需要用return语句指定返回值。如下面这个lambda表达式接受一个整形的参数a，返回a的平方
-```java
+{% highlight java %}
 (int a) -> a^2   
     等同于
 
 (int a) -> {return a^2;}
-```
+{% endhighlight %}
 继续看更多的例子：
-```java
+{% highlight java %}
 (int x, int y) -> x + y  
 
 () -> 42  
 
 (String s) -> { System.out.println(s); }
-``` 
+{% endhighlight %}
 创建一个FileFilter，文件过滤器：
-```java
+{% highlight java %}
 FileFilter java = (File f) -> f.getName().endsWith(".java")
-```
+{% endhighlight %}
 
 创建一个线程：
-```java
+{% highlight java %}
 new Thread(() -> {  
   //do sth here...  
 }).start()
-```
+{% endhighlight %}
 
 创建一个Callable：
-```java
+{% highlight java %}
 Callable<String> c = () -> "done";
-```
+{% endhighlight %}
 
 而且lambda表达式可以赋值给一个变量：
-```java
+{% highlight java %}
 Comparator<String> c;  
 c = (String s1, String s2) -> s1.compareToIgnoreCase(s2);
-```
+{% endhighlight %}
 当然还可以作为方法的返回值：
-```java
+{% highlight java %}
 public Runnable toDoLater() {  
   return () -> {  
     System.out.println("later");  
   };  
 }
-```
+{% endhighlight %}
 从上面可以看到，一个lambda表达式被作为一个接口类型对待，具体对应哪个接口，编译器会根据上下文环境推断出来，如下面的lambda表达式就表示一个`ActionListener`.
-```java
+{% highlight java %}
 ActionListener l = (ActionEvent e) -> ui.dazzle(e.getModifiers());
-```
+{% endhighlight %}
 这有可能会造成一个表达式在不同的上下文中被作为不同的类型，如下面的这种情况，尽管两个表达式是相同的，上面的表达式被推断为Callable的类型，下面的会被推断为PrivilegedAction类型。
-```java
+{% highlight java %}
 Callable<String> c = () -> "done";  
 PrivilegedAction<String> a = () -> "done";
-```
+{% endhighlight %}
 那么编译器是根据哪些因为决定一个表达式的类型呢？
 
 如果一个表达式被推断为是T类型的，需要满足以下4个条件:
 
-1.T是函数式接口类型（只声明唯一一个方法）
-
-2.表达式和T中声明的方法的参数个数一致，参数类型也一致
-
-3.表达式和T中声明的方法的返回值类型一致
-
-4.表达式和T中声明的方法抛出的异常一致
-
+1. T是函数式接口类型（只声明唯一一个方法）
+2. 表达式和T中声明的方法的参数个数一致，参数类型也一致
+3. 表达式和T中声明的方法的返回值类型一致
+4. 表达式和T中声明的方法抛出的异常一致
 有了这个准则，上面的疑问就迎刃而解了
 
  
