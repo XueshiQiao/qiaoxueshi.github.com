@@ -27,7 +27,6 @@ new Thread(new Runnable() {
 </pre>
 类似这种情况的还有swing中button等控件的监听器，如下面代码所示，创建该接口的一个匿名内部类实例作为参数传递到button的addActionListener方法中。
 {% highlight java %}
-
 public interface ActionListener {   
     void actionPerformed(ActionEvent e);  
 }  
@@ -106,12 +105,12 @@ public Runnable toDoLater() {
 从上面可以看到，一个lambda表达式被作为一个接口类型对待，具体对应哪个接口，编译器会根据上下文环境推断出来，如下面的lambda表达式就表示一个`ActionListener`.
 {% highlight java %}
 ActionListener l = (ActionEvent e) -> ui.dazzle(e.getModifiers());
-{% endhighlight %}
+
 这有可能会造成一个表达式在不同的上下文中被作为不同的类型，如下面的这种情况，尽管两个表达式是相同的，上面的表达式被推断为Callable的类型，下面的会被推断为PrivilegedAction类型。
-```Java
+{% highlight java %}
 Callable<String> c = () -> "done";  
 PrivilegedAction<String> a = () -> "done";
-```
+{% endhighlight %}
 那么编译器是根据哪些因为决定一个表达式的类型呢？
 
 如果一个表达式被推断为是T类型的，需要满足以下4个条件:
