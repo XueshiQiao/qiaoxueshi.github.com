@@ -105,7 +105,7 @@ public Runnable toDoLater() {
 从上面可以看到，一个lambda表达式被作为一个接口类型对待，具体对应哪个接口，编译器会根据上下文环境推断出来，如下面的lambda表达式就表示一个`ActionListener`.
 {% highlight java %}
 ActionListener l = (ActionEvent e) -> ui.dazzle(e.getModifiers());
-
+{% endhighlight %}
 这有可能会造成一个表达式在不同的上下文中被作为不同的类型，如下面的这种情况，尽管两个表达式是相同的，上面的表达式被推断为Callable的类型，下面的会被推断为PrivilegedAction类型。
 {% highlight java %}
 Callable<String> c = () -> "done";  
