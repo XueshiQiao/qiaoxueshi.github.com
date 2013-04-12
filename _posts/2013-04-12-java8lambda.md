@@ -29,7 +29,7 @@ new Thread(new Runnable() {
 </code>
 </pre>
 类似这种情况的还有swing中button等控件的监听器，如下面代码所示，创建该接口的一个匿名内部类实例作为参数传递到button的addActionListener方法中。
-{% highlight java %}
+{% highlight Java linenos %}
 public interface ActionListener {   
     void actionPerformed(ActionEvent e);  
 }  
