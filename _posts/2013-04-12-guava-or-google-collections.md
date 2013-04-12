@@ -3,7 +3,7 @@ layout: post
 title: "Guava/Google Collections教程"
 description: ""
 category: Java 
-tags: [guava]
+tags: [guava, java, Google collections]
 ---
 {% include JB/setup %}
 
