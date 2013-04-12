@@ -1,7 +1,7 @@
 ---
 layout: page
-title: 代码手工艺人
-tagline: 关注Java服务端和iOS开发
+title: Home
+tagline: Java & iOS Dev
 ---
 {% include JB/setup %}
 
