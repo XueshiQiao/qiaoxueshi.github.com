@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Home
+title: 代码手工艺人
 tagline: Java & iOS Dev
 ---
 {% include JB/setup %}
