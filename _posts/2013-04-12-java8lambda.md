@@ -23,15 +23,25 @@ Java8带有Lambda表达式的预览版的JDK已经放出来了（地址在最下
 <code>
 new Thread(new Runnable() {  
     public void run() {  
-            System.out.println("hello");  
-        }  
+        System.out.println("hello");  
+    }  
 }).start();
 </code>
 </pre>
+类似这种情况的还有swing中button等控件的监听器，如下面代码所示，创建该接口的一个匿名内部类实例作为参数传递到button的addActionListener方法中。
+{% highlight ruby %}
 
+public interface ActionListener {   
+    void actionPerformed(ActionEvent e);  
+}  
 
+button.addActionListener(new ActionListener() {   
+  public void actionPerformed(ActionEvent e) {   
+    ui.dazzle(e.getModifiers());  
+  }  
+});
 
-
+{% endhighlight %}
 
 
 
