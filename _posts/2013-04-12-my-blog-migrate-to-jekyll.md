@@ -2,8 +2,8 @@
 layout: post
 title: "Blog从Wordpress迁移到Jekyll"
 description: ""
-category: Java 
-tags: [java, test]
+category: 生活 
+tags: [life, blog]
 ---
 {% include JB/setup %}
 
