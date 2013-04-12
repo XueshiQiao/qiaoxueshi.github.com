@@ -30,12 +30,7 @@ Reddit Java网站最近有一个题目为“[分享Java标准类库中一些有�
 
 翻译自:[http://www.javaworld.com/community/node/8335](http://marxsoftware.blogspot.com/)
 
----
-注：OSChina上关于Guava库的介绍文章（当然我也参与了很多部分的翻译）
 
-* Part1:[使用 Google Collections,Guava,static imports 编写漂亮代码](http://www.oschina.net/translate/beautiful-code-with-google-collections-guava-and-static-imports-part-1)
-* Part2:[深入探索 Google Guava 库](http://www.oschina.net/translate/diving-into-the-google-guava-library-part-2)
-* Part3:[Java 的函数式编程，通过 Google Collections 过滤和调用](http://www.oschina.net/translate/functional-java-filtering-and-ordering-with-google-collections-part-3)
 
 
 
