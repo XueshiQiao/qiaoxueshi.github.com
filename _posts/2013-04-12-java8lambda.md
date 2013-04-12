@@ -2,8 +2,8 @@
 layout: post
 title: "初探Java8新特性之lambda表达式"
 description: ""
-category:"Java" 
-tags: [java, java8, lambda]
+category: 
+tags: []
 ---
 {% include JB/setup %}
 
