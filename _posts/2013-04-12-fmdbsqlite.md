@@ -10,7 +10,6 @@ tags: [iOS, FMDB, sqlite]
 [FMDB](https://github.com/ccgus/fmdb)是Objective-C上操作Sqlite的开源库，与原生的操作sqlite数据库相比，有以下几个优点：
 
 1. 操作方便、简单、代码优雅，易于维护;
-
 2. 线程安全，用着更放心，很少出现过锁死数据库文件以及Crash的现象。
 
 FMDatabase不是线程安全的，一个FMDatabase对象一定不能在多线程中使用，为了保证线程安全，可以在FMDB中采取下面两种方式：
