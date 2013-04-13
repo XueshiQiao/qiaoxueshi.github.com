@@ -3,7 +3,7 @@ layout: post
 title: "Blog从Wordpress迁移到Jekyll"
 description: ""
 category: 生活 
-tags: [life, blog]
+tags: [life, blog, Jekyll]
 ---
 {% include JB/setup %}
 
