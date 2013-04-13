@@ -2,8 +2,8 @@
 layout: post
 title: "Jekyll设置友言为社会化评论组件"
 description: ""
-category: S 
-tags: [友言, Jekyll]
+category: Site
+tags: [Jekyll]
 ---
 {% include JB/setup %}
 Jekyll默认的社会化评论组件是disqus，第三方SNS是facebook，twitter等，不方便大陆用户使用，发现国内也有类似的社会化评论组件，比如友言等，经比较发现友言更简单易用。
