@@ -2,7 +2,7 @@
 layout: post
 title: "Jekyll设置友言为社会化评论组件"
 description: ""
-category: Site
+category: Jekyll
 tags: [Jekyll]
 ---
 {% include JB/setup %}
