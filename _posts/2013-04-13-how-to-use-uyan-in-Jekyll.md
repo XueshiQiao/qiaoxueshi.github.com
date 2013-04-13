@@ -26,24 +26,22 @@ push到GitHub，刷新页面查看效果吧
 
 这么做的原理很简单，看一下youname.github.com/_includes/JB/comments文件里的内容：
 
-<pre><code>
-{% if site.JB.comments.provider and page.comments != false %}
-
-{% case site.JB.comments.provider %}
-{% when "disqus" %}
-  {% include JB/comments-providers/disqus %}
-{% when "livefyre" %}
-  {% include JB/comments-providers/livefyre %}
-{% when "intensedebate" %}
-  {% include JB/comments-providers/intensedebate %}
-{% when "facebook" %}
-  {% include JB/comments-providers/facebook %}
-{% when "custom" %}
-  {% include custom/comments %}
-{% endcase %}
-
-{% endif %}
-</code></pre>
+	{% if site.JB.comments.provider and page.comments != false %}
+	
+	{% case site.JB.comments.provider %}
+	{% when "disqus" %}
+	  {% include JB/comments-providers/disqus %}
+	{% when "livefyre" %}
+	  {% include JB/comments-providers/livefyre %}
+	{% when "intensedebate" %}
+	  {% include JB/comments-providers/intensedebate %}
+	{% when "facebook" %}
+	  {% include JB/comments-providers/facebook %}
+	{% when "custom" %}
+	  {% include custom/comments %}
+	{% endcase %}
+	
+	{% endif %}
 
 看最后一个when语句，当site.JB.comments.provider的值为custom时，就加载custom/comments文件，想必你也知道了这个site.JB.comments.provider的值就是刚才在_config.yml中设置的那个provider.
 
