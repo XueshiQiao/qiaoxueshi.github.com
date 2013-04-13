@@ -17,8 +17,3 @@ weibo:[@学士_](http://weibo.com/2js3)
 
 email:qiaoxueshi#gmail.com
 
-<!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1736636" async=""></script>
-<!-- UY END -->
-
