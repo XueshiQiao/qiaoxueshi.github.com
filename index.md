@@ -13,7 +13,7 @@ tagline: Java & iOS Dev
 </ul>
 
 ###Contact me
-weibo:[@学士_](http://weibo.com/2js3)
+weibo:[@拓词Joey ](http://weibo.com/2js3)
 
 email:qiaoxueshi#gmail.com
 
