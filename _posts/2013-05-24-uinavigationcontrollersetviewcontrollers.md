@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "UINavigationController的setViewControllers方法"
+title: "UINC的setViewControllers方法"
 description: ""
 category:iOS 
 tags: [iOS]
