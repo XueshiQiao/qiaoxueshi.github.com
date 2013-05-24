@@ -17,7 +17,7 @@ NSMutableArray * viewControllers = [self.navigationController.viewControllers mu
 [self.navigationController setViewControllers:viewControllers animated:YES];
 // [viewControllers relase] // if non-arc
 ```
-感谢 Allen[weibo](http://www.weibo.com/122678100) 提供的代码和思路
+感谢 Allen([Weibo](http://www.weibo.com/122678100)) 提供的代码和思路
 
 #API文档
 
