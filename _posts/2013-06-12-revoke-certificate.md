@@ -19,8 +19,8 @@ tags: []
 	After replacing your certificate(s) you are required to update and reinstall any provisioning profiles that were bound to the old certificate.
 	
 搞清楚问题和解决办法，就开工：
-1. 首先在iOS Provisioning Portal[1]里revoke掉当前失效的Certificates，并创建一个新的Certificates(参考[2])
 
+1. 首先在iOS Provisioning Portal[1]里revoke掉当前失效的Certificates，并创建一个新的Certificates(参考[2])
 2. 通过import和export Developer Profile备份和恢复(参考[3]和[4])
 
 Links: 
