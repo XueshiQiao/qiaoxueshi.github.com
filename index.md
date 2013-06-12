@@ -15,5 +15,5 @@ tagline: Java & iOS Dev
 ###Contact me
 Weibo : [@拓词Joey ](http://weibo.com/2js3)  
 Twitter : [@XueshiQiao](https://twitter.com/XueshiQiao)  
-Email : ``` qiaoxueshi*gmail.com (*->@) ```  
+Email :  [qiaoxueshi*gmail.com](mailto:qiaoxueshi@gmail.com)  
 
