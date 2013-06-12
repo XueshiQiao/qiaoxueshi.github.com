@@ -24,9 +24,9 @@ tags: []
 2. 通过import和export Developer Profile备份和恢复(参考[3]和[4])
 
 Links: 
-[1] [iOS Provisioning Portal](https://developer.apple.com/account/overview.action)  
-[2] [How do I delete/revoke my certificates and start over fresh?](http://developer.apple.com/library/ios/#technotes/tn2250/_index.html#//apple_ref/doc/uid/DTS40009933-CH1-TNTAG6)  
-[3] [Exporting and  Importing Developer Profile ](http://developer.apple.com/library/ios/#documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingCertificatesandProvisioningAssets/MaintainingCertificatesandProvisioningAssets.html)  
-[4] [Transferring Your Identities](http://developer.apple.com/library/ios/#technotes/tn2250/_index.html#//apple_ref/doc/uid/DTS40009933-CH1-TNTAG24)  
+1. [iOS Provisioning Portal](https://developer.apple.com/account/overview.action)  
+2. [How do I delete/revoke my certificates and start over fresh?](http://developer.apple.com/library/ios/#technotes/tn2250/_index.html#//apple_ref/doc/uid/DTS40009933-CH1-TNTAG6)  
+3. [Exporting and  Importing Developer Profile ](http://developer.apple.com/library/ios/#documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingCertificatesandProvisioningAssets/MaintainingCertificatesandProvisioningAssets.html)  
+4. [Transferring Your Identities](http://developer.apple.com/library/ios/#technotes/tn2250/_index.html#//apple_ref/doc/uid/DTS40009933-CH1-TNTAG24)  
 
 
