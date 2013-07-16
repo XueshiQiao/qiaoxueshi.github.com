@@ -15,6 +15,12 @@ tags: [iOS]
 另外[@lexrus](https://gist.github.com/lexrus)同学的这个[gist](https://gist.github.com/lexrus/5792296)里提供了所有视频的HD和SD的版本，以及文件序号和视频名称的对应关系，可以直接放在迅雷里下载，完了再配上字幕，可以像欣赏好莱坞大片一样的欣赏WWDC2013带来的新技术盛宴了！
 
 
+ 
+  
+   
+   
+   
+
 
 
 
