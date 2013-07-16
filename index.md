@@ -12,8 +12,6 @@ tagline: Java & iOS Dev
   {% endfor %}
 </ul>
 
-By Qiao Xueshi
-
 ###Contact me
 Weibo : [@拓词Joey ](http://weibo.com/2js3)  
 Twitter : [@XueshiQiao](https://twitter.com/XueshiQiao)  
