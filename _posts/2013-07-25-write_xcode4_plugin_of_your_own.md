@@ -18,7 +18,7 @@ tags: [iOS]
 Xcode插件其实就是一个Mac OS X bundle，所以像下图一样创建一个Bundle。
 ![Image1 icon](/assets/resources/xcode_plugin_1.png)
 
-给工程名起个名字，并确保***不要***勾选`Use automatic reference counting`，因为Xcode是使用GC来管理内存的，所以Xcode的插件也需要是用GC来管理内存的。Framework选择`Cocoa`。
+给工程起个名字，并确保***不要***勾选`Use automatic reference counting`，因为Xcode是使用GC来管理内存的，所以Xcode的插件也需要是用GC来管理内存的。Framework选择`Cocoa`。
 
 ![Image2 icon](/assets/resources/xcode_plugin_2.png)
 
@@ -128,7 +128,7 @@ Xcode插件其实就是一个Mac OS X bundle，所以像下图一样创建一个
 	}
  
 ##5. 需要注意的
-* Plugin不能使用Arc，注意管理好内存
+* Plugin不能使用Arc，需要手动好内存
 * 不能Debug，不过可以在程序里通过NSLog打印出日志，并通过`tail -f /var/log/system.log`	命令来查看输出的日志
 * 如果Xcode突然启动不起来了，可能是我们的插件有问题，跑到`~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`目录下，把插件删掉，restart Xcode，查找问题在哪
 
