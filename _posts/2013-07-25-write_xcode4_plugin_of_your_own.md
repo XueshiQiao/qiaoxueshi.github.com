@@ -7,24 +7,24 @@ tags: [iOS]
 ---
 {% include JB/setup %}
 
-刚写iOS程序的时候就知道Xcode支持开发者编写自己的插件，比如[ColorSense](https://github.com/omz/ColorSense-for-Xcode)等很实用的插件，但Xcode的插件开发没有官方的文档支持，一直觉得很神秘，那今天就来揭开它的面纱。
+刚写iOS程序的时候就知道Xcode支持第三方插件，比如[ColorSense](https://github.com/omz/ColorSense-for-Xcode)等很实用的插件，但Xcode的插件开发没有官方的文档支持，一直觉得很神秘，那今天就来揭开它的面纱。
 
-在Xcode启动的时候，Xcode会检查一下插件目录(`~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`)下的插件(扩展名为`.xcplugin`的bundle文件)并加载他们。其实到这里我们就猜到了，我们做的插件最终会是一个扩展名为`.xcplugin`的bundle文件，并放在插件目录下供Xcode加载。
+在Xcode启动的时候，它会检查插件目录(`~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`)下所有的插件(扩展名为`.xcplugin`的bundle文件)并加载他们。其实到这里我们就猜到了，我们做的插件最终会是一个扩展名为`.xcplugin`的bundle文件，放在插件目录下供Xcode加载。
 
-我们先做一个简单的插件，需要很简单的几个步骤即可完成，我的环境是Xcode 4.6.3 (4H1503)。
+OK，我们先做一个简单的插件，需要很简单的几个步骤即可完成，我的环境是Xcode 4.6.3 (4H1503)。
 
-##1. 创建一个新的Xcode Project
+##1. 新创建一个Xcode Project
 
-Xcode插件其实就是一个Mac OS X bundle，所以像下图一样创建一个Bundle。
+Xcode插件其实就是一个Mac OS X bundle，所以可以参考下图创建一个Bundle。
 ![Image1 icon](/assets/resources/xcode_plugin_1.png)
 
-给工程起个名字，并确保***不要***勾选`Use automatic reference counting`，因为Xcode是使用GC来管理内存的，所以Xcode的插件也需要是用GC来管理内存的。Framework选择`Cocoa`。
+给Project起个名字，并确保***不要***勾选`Use automatic reference counting`，因为Xcode是使用GC来管理内存的，所以Xcode的插件也需要是用GC来管理内存的。Framework选择`Cocoa`。
 
 ![Image2 icon](/assets/resources/xcode_plugin_2.png)
 
 
 ##2. 设置Target Info
-像下图一样设置下面这些信息
+像下图一样设置这些信息
 
 * `XC4Compatible` = `YES`
 * `XCPluginHasUI` = `NO`
@@ -35,27 +35,28 @@ Xcode插件其实就是一个Mac OS X bundle，所以像下图一样创建一个
 ![Image3 icon](/assets/resources/xcode_plugin_3.png)
 
 ##3. 设置Build Settings
-然后打开Build Setting 这个Tab，修改这些：
+然后打开Build Setting Tab，设置这些：
 
 * 设置`Installation Build Products Locatio`为`${HOME}`，Xcode会自动转换为你当前用户的Home路径
-* 设置`Installation Directory` 为 `/Library/Application Support/Developer/Shared/Xcode/Plug-ins`， Xcode会把拼接`Installation Build Products Locatio`和`Installation Directory`两个路径为一个绝对路径来查找你的插件
+* 设置`Installation Directory` 为 `/Library/Application Support/Developer/Shared/Xcode/Plug-ins`， Xcode会把拼接`Installation Build Products Locatio`和`Installation Directory`为一个绝对路径来查找你的插件
 * 设置`Deployment Location` 为 `YES`
 * 设置`Set Wrapper extension` 为 `xcplugin`
 
 ![Image4 icon](/assets/resources/xcode_plugin_4.png)
 ![Image5 icon](/assets/resources/xcode_plugin_5.png)
-##4. 添加 USER-DEFINED 设置
+##4. 添加 User-Defined 设置
 
 * 设置`GCC_ENABLE_OBJC_GC` 为 `supported`
 * 设置`GCC_MODEL_TUNING` 为 `G5`
 
 ![Image6 icon](/assets/resources/xcode_plugin_6.png)
 
-有了这些设置，每次build这个Projct的时候，Xcode就会把我们的插件copy到plugin文件夹下，然后通过重启Xcode来让Xcode重新加载新的插件，所以能看出来开发插件是相对来说简单一些的，调试插件就比较纠结了，唯一的办法就是build之后，重启Xcode，来加载最新build的插件。
+有了这些设置，每次build这个Projct的时候，Xcode就会把build后的插件copy到plugin文件夹下，然后我们需要重启Xcode来重新加载新build的插件。开发插件相对来说简单一些，调试插件就比较纠结了，唯一的办法就是build之后，重启Xcode，来加载最新build的插件。
 
 准备工作已经结束，下面开始实现我们的插件。
 
-我们在第二步的时候设置了一个`Principal Class`，在Xcode里新建和这个名字一样的Objective-C类。在实现文件中添加上`+ (void) pluginDidLoad: (NSBundle*) plugin`方法。 该方法会在Xcode加载插件的时候被调用，可以用来做一些初始化的操作。通常这个类是一个单例，并添加了Observe了`NSApplicationDidFinishLaunchingNotification`这个通知，用来获得Xcode加载完毕的通知。
+##5. 实现我们的插件
+在第二步的时候我们设置了一个`Principal Class`，那么在Xcode里新建Objective-C类，名字和`Principal Class`设置的值保持一致。在实现文件中添加上`+ (void) pluginDidLoad: (NSBundle*) plugin`方法。 该方法会在Xcode加载插件的时候被调用，可以用来做一些初始化的操作。通常这个类是一个单例，并Observe了`NSApplicationDidFinishLaunchingNotification`，用来获得Xcode加载完毕的通知。
 
 	+ (void) pluginDidLoad: (NSBundle*) plugin {
 		static id sharedPlugin = nil;
@@ -76,9 +77,9 @@ Xcode插件其实就是一个Mac OS X bundle，所以像下图一样创建一个
 	}
 
 
-一旦接收到Xcode加载完毕的通知，就可以建立其他plugin需要的notification或者添加额外的菜单项或者访问像Code Editor一类的界面元素。
+一旦接收到Xcode加载完毕的通知，就可以Observe需要的其他notification或者在菜单中添加菜单项或者访问Code Editor之类的UI组件。
 
-在我们的这个简单例子中，我们在`Edit`下添加一个叫做`Custom Plugin`的菜单项，并设置一个`⌥ + c`快捷键。它的功能是在激活的情况下，使用NSAlert显示出我们选中的文本。我们需要通过观察`NSTextViewDidChangeSelectionNotification`并访问接收参数中的`NSTextView`，来获得被选中的文本。
+在我们的这个简单例子中，我们就在`Edit`下添加一个叫做`Custom Plugin`的菜单项，并设置一个`⌥ + c`快捷键。它的功能是使用`NSAlert`显示出我们在代码编辑器中选中的文本。我们需要通过观察`NSTextViewDidChangeSelectionNotification`并访问接收参数中的`NSTextView`，来获得被选中的文本。
 
 	- (void) applicationDidFinishLaunching: (NSNotification*) notification {
 	    [[NSNotificationCenter defaultCenter] addObserver:self 
@@ -121,22 +122,26 @@ Xcode插件其实就是一个Mac OS X bundle，所以像下图一样创建一个
 	    [alert runModal];
 	}
 
-你会发现会报selectedText不存在的错，就实现里增加一个`NSString *selectedText`即可。
+你会发现在出现selectedText的地方会报错，在实现里添加上`NSString *selectedText`即可。
 
 	@implementation Plugin {
 	    NSString *selectedText;
 	}
- 
-##5. 需要注意的
-* Plugin不能使用Arc，需要手动好内存
-* 不能Debug，不过可以在程序里通过NSLog打印出日志，并通过`tail -f /var/log/system.log`	命令来查看输出的日志
-* 如果Xcode突然启动不起来了，可能是我们的插件有问题，跑到`~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`目录下，把插件删掉，restart Xcode，查找问题在哪
 
-##6. 总结
+最终效果：  
+![Image7 icon](/assets/resources/xcode_plugin_7.png)
+
+
+##6. 需要注意的
+* Plugin不能使用Arc，需要手动管理好内存
+* 不能直接Debug，不过可以在程序里通过NSLog打印出日志，并通过`tail -f /var/log/system.log`	命令来查看输出的日志
+* 如果Xcode突然启动不起来了，可能是插件有问题，跑去`~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`目录下，把插件删掉，restart Xcode，查找问题在哪
+
+##总结
 这只是一个简单的Xcode插件的入门编写示例，不过“麻雀虽小，五脏俱全”，可以了解到Xcode的插件一些东西，比如Xcode插件本质上其实就是一个Mac OS X bundle等等，而且因为没有Apple官方的文档的支持，很多东西只能去Google，或者参考别人插件的一些实现。
 
 
-##7. REF
+##REF
 本文编译自[WRITING YOUR OWN XCODE 4 PLUGINS](http://blacksmithsoftware.com/blog/2012/11/19/writing-your-own-xcode4-plugins)，感谢原作者[Blacksmith Software](http://twitter.com/#!/BlacksmithSW)
 
 ---
