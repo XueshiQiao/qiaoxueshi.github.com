@@ -37,8 +37,8 @@ Xcode插件其实就是一个Mac OS X bundle，所以可以参考下图创建一
 ##3. 设置Build Settings
 然后打开Build Setting Tab，设置这些：
 
-* 设置`Installation Build Products Locatio`为`${HOME}`，Xcode会自动转换为你当前用户的Home路径
-* 设置`Installation Directory` 为 `/Library/Application Support/Developer/Shared/Xcode/Plug-ins`， Xcode会把拼接`Installation Build Products Locatio`和`Installation Directory`为一个绝对路径来查找你的插件
+* 设置`Installation Build Products Location`为`${HOME}`，Xcode会自动转换为你当前用户的Home路径
+* 设置`Installation Directory` 为 `/Library/Application Support/Developer/Shared/Xcode/Plug-ins`， Xcode会把拼接`Installation Build Products Location`和`Installation Directory`为一个绝对路径来查找你的插件
 * 设置`Deployment Location` 为 `YES`
 * 设置`Set Wrapper extension` 为 `xcplugin`
 
@@ -133,7 +133,7 @@ Xcode插件其实就是一个Mac OS X bundle，所以可以参考下图创建一
 
 
 ##6. 需要注意的
-* ~~Plugin不能使用Arc，需要手动管理好内存~~（谢谢@onevcat的提醒，因为是用GC，不需要手动管理内存了）
+* ~~Plugin不能使用ARC，需要手动管理好内存~~（谢谢@onevcat的提醒，因为是用GC，不需要手动管理内存了）
 * 不能直接Debug，不过可以在程序里通过NSLog打印出日志，并通过`tail -f /var/log/system.log`	命令来查看输出的日志
 * 如果Xcode突然启动不起来了，可能是插件有问题，跑去`~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`目录下，把插件删掉，restart Xcode，查找问题在哪
 
