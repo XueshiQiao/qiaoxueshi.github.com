@@ -136,13 +136,14 @@ Xcode插件其实就是一个Mac OS X bundle，所以可以参考下图创建一
 * ~~Plugin不能使用ARC，需要手动管理好内存~~（谢谢@onevcat的提醒，因为是用GC，不需要手动管理内存了）
 * 不能直接Debug，不过可以在程序里通过NSLog打印出日志，并通过`tail -f /var/log/system.log`	命令来查看输出的日志
 * 如果Xcode突然启动不起来了，可能是插件有问题，跑去`~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`目录下，把插件删掉，restart Xcode，查找问题在哪
+* 如果1-4步骤的各种设置你比较讨厌的话，可以直接用这个[Xcode4 Plugin Template](https://github.com/kattrali/Xcode4-Plugin-Template)来搞定, 怎么使用在它的Readme中有详细的说明，:)
 
 ##总结
 这只是一个简单的Xcode插件的入门编写示例，不过“麻雀虽小，五脏俱全”，可以了解到Xcode的插件一些东西，比如Xcode插件本质上其实就是一个Mac OS X bundle等等，而且因为没有Apple官方的文档的支持，很多东西只能去Google，或者参考别人插件的一些实现。
 
 
 ##REF
-本文编译自[WRITING YOUR OWN XCODE 4 PLUGINS](http://blacksmithsoftware.com/blog/2012/11/19/writing-your-own-xcode4-plugins)，感谢原作者[Blacksmith Software](http://twitter.com/#!/BlacksmithSW)
+本文主要参考和编译自[WRITING YOUR OWN XCODE 4 PLUGINS](http://blacksmithsoftware.com/blog/2012/11/19/writing-your-own-xcode4-plugins)，感谢原作者[Blacksmith Software](http://twitter.com/#!/BlacksmithSW)
 
 ---
 
