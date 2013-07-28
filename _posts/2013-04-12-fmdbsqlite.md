@@ -19,7 +19,7 @@ FMDatabase不是线程安全的，一个FMDatabase对象一定不能在多线程
 
 使用FMDatabase时，一般这样来做：
 
-{% highlight c linenos %}
+{% highlight objc %}
 //创建一个 FMDatabase的对象
 FMDatabase *db = [FMDatabase databaseWithPath:@"/tmp/tmp.db"];
 //判断db是否打开，在使用之前一定要确保是打开的
@@ -39,7 +39,7 @@ db = nil;
 上面的这段代码是使用FMDatabase操作数据库的一个典型的使用方式，可以看到，其实我们关注的只是使用它来对数据库进行增删改查的操作，却每次都要写这些打开和关闭的操作，代码也显得臃肿，bad smell。用过Java中著名的Spring框架的同学都记得里面对数据库操作提供了一个Template的机制，比如JdbcTemplate、HibernateTemplate等，使用回调函数非常优雅的分离了创建连接、关闭连接和使用数据库连接操作数据库，下面就来模拟这个实现。
 首先做个抽象，在上面代码的真正的逻辑中，我们只要拿到db变量就能满足我们的需要了，那么我们就把这一块抽象出来，在这里我们使用oc里的block来实现回调功能：
 
-<pre><code>
+{% highlight objc %}
 //创建一个工具类TWFmdbUtil
 @implementation TWFmdbUtil
 + (void) execSqlInFmdb:(void (^)(FMDatabase *db))block {
@@ -65,11 +65,10 @@ db = nil;
     db = nil;
 }
 @end
-</code></pre>
+{% endhighlight %}
 
 现在使用的时候就能够像下面这样来实现了：
-
-<pre><code>
+{% highlight objc %}
 [TWFmdbUtil execSqlInFmdb:^(FMDatabase *db) {
 	//处理业务逻辑
 	FMResultSet *s = [db executeQuery:@"SELECT * FROM myTable"];
@@ -77,13 +76,13 @@ db = nil;
     		//retrieve values for each record
 	}
 }];
-</code></pre>
+{% endhighlight %}
 
 这样的代码看起来是不是优雅多了呢？我们无需关心数据库的创建和关闭操作，只需要关心我们的业务逻辑就可以了。
 
 历史总是惊人的相似，FMDatabaseQueue的使用就是采用这样的方式来处理的，来看一段fmdb主页上提供的一个例子：
 
-<pre><code>
+{% highlight objc %}
 FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:aPath];
 [queue inDatabase:^(FMDatabase *db) {
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", [NSNumber numberWithInt:1]];
@@ -92,10 +91,11 @@ FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:aPath];
 
     FMResultSet *rs = [db executeQuery:@"select * from foo"];
     while ([rs next]) {
-        …
+        //...
     }
 }];
-</code></pre>
+{% endhighlight %}
+
 
 更多实例请移步FMDB在GitHub上的[主页](https://github.com/ccgus/fmdb)
 或者访问@唐巧_boy 关于FMDB的[这篇文章](http://blog.devtang.com/blog/2012/04/22/use-fmdb/)
