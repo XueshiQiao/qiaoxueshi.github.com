@@ -6,14 +6,23 @@ tagline: Java & iOS Dev
 {% include JB/setup %}
 
 ###My Blog
-<ul class="posts">
+<ul>
   {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+    <li style="list-style:none; margin-bottom:3px;">
+    	<div style="text-align:left; display:block; width:90px; float:left;">
+    		<span>{{ post.date | date_to_string }}</span> 
+    	</div>
+    	<span>&raquo;</span>
+    	 
+    	<a style="margin-left:3px;" href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+    </li>
   {% endfor %}
 </ul>
 
 ###Contact me
-Weibo : [@拓词Joey ](http://weibo.com/2js3)  
-Twitter : [@XueshiQiao](https://twitter.com/XueshiQiao)  
-Email : [qiaoxueshi#gmail.com](mailto:qiaoxueshi@gmail.com)  
+<ul>
+	<li style="list-style:none; margin-bottom:3px;">Weibo : <a href="http://weibo.com/2js3">@拓词Joey</a>  </li>
+	<li style="list-style:none; margin-bottom:3px;">Twitter : <a href="https://twitter.com/XueshiQiao">@XueshiQiao</a>  </li>
+	<li style="list-style:none; margin-bottom:3px;">Email : qiaoxueshi#gmail.com</li>
+</ul>
 
