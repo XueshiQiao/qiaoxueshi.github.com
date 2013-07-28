@@ -8,6 +8,13 @@
       <span>{{ page.date | date_to_long_string }}</span>
     </div>
     <div class="content">
+      {% unless page.image == empth %}
+        <div style="text-align:center; margin-bottom:10px;">
+          <img src="{{page.image}}"  
+            {% unless page.image-height == empth %} height="{{page.image-height}}" {% endunless %}
+            {% unless page.image-width == empth %} width="{{page.image-width}}"> {% endunless %}
+        </div>
+      {% endunless %}
       {{ content }}
     </div>
 
