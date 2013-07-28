@@ -53,6 +53,7 @@ task :post do
     puts "Error - date format must be YYYY-MM-DD, please check you typed it correctly!"
     exit -1
   end
+  pureFileName = "#{date}-#{slug}.png"
   filename = File.join(CONFIG['posts'], "#{date}-#{slug}.#{CONFIG['post_ext']}")
   if File.exist?(filename)
     abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
@@ -63,7 +64,7 @@ task :post do
     post.puts "---"
     post.puts "layout: post"
     post.puts "title: \"#{title.gsub(/-/,' ')}\""
-    post.puts 'image: ""'
+    post.puts "image: \"#{pureFileName}\""
     post.puts 'image-width: ""'
     post.puts 'image-height: ""'
     post.puts 'description: ""'
