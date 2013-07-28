@@ -6,7 +6,11 @@ category: iOS
 tags: [iOS]
 ---
 {% include JB/setup %}
-![NSOperation](/assets/resources/nsoperation.png)  
+<div style="text-align:center; margin-bottom:10px;">
+  <img src="/assets/resources/nsoperation.png"  
+     height="400" 
+     width="600"> 
+</div>
 
 几乎每个开发者都知道，让App快速响应的秘诀是把耗时的计算丢到后台线异步去做。于是，Modern Objective-C开发者有两个选择：[GCD](http://en.wikipedia.org/wiki/Grand_Central_Dispatch)和[NSOperation](https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/NSOperation_class/Reference/Reference.html).
 
