@@ -11,10 +11,12 @@ Jekyll默认的社会化评论组件是disqus，第三方SNS是facebook，twitte
 替换的整个过程很简单，分为两大步：
 首先要注册一个友言的账户，点击获取代码，就能获得一段和你用户相关的js代码。类似下面这样：
 
-	<!-- UY BEGIN -->
-	<div id="uyan_frame"></div>
-	<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=YOUR_USER_ID" async=""></script>
-	<!-- UY END -->
+{% highlight html %}
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=YOUR_USER_ID" async=""></script>
+<!-- UY END -->
+{% endhighlight %}
 
 然后要切换到本地来，由于Jekyll的评论组件是插件式的，很方便修改，分为下面2个步骤
 

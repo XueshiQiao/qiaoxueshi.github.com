@@ -12,8 +12,9 @@ tags: [iOS]
 
 今天对Xcode里iOS的版本号又有了新的认识，一个叫做Version，一个叫做Build，这两个值都可以在Xcode中选中target，点击“Summary”后看到。 Version在plist文件中的key是“CFBundleShortVersionString”，和AppStore上的版本号保持一致，Build在plist中的key是“CFBundleVersion”，代表build的版本号，该值每次build之后都应该增加1。这两个值都可以在程序中通过下面的代码获得：
 
-
-	[[[NSBundle mainBundle] infoDictionary] valueForKey:@"key"]
+{% highlight objc %}
+[[[NSBundle mainBundle] infoDictionary] valueForKey:@"key"]
+{% endhighlight %}
 <br />
 <br />
 ##Archive后自动增长build号
@@ -25,26 +26,26 @@ tags: [iOS]
 4. 点开该项，copy下面的shell代码进去，代码来自[这里](http://stackoverflow.com/questions/9855955/xcode-increment-
 build-number-only-during-archive?answertab=active#tab-top)，如下图所示
 
+{% highlight sh %}
+if [ $CONFIGURATION == Release ]; then
+    echo "Bumping build number..."
+    plist=${PROJECT_DIR}/${INFOPLIST_FILE}
 
-		if [ $CONFIGURATION == Release ]; then
-		    echo "Bumping build number..."
-		    plist=${PROJECT_DIR}/${INFOPLIST_FILE}
+	#increment the build number (ie 115 to 116)
+    buildnum=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${plist}")
+    if [[ "${buildnum}" == "" ]]; then
+        echo "No build number in $plist"
+        exit 2
+    fi
 
-			#increment the build number (ie 115 to 116)
-		    buildnum=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${plist}")
-		    if [[ "${buildnum}" == "" ]]; then
-		        echo "No build number in $plist"
-		        exit 2
-		    fi
+    buildnum=$(expr $buildnum + 1)
+    /usr/libexec/Plistbuddy -c "Set CFBundleVersion $buildnum" "${plist}"
+    echo "Bumped build number to $buildnum"
 
-		    buildnum=$(expr $buildnum + 1)
-		    /usr/libexec/Plistbuddy -c "Set CFBundleVersion $buildnum" "${plist}"
-		    echo "Bumped build number to $buildnum"
-
-		else
-		    echo $CONFIGURATION " build - Not bumping build number."
-		fi
-
+else
+    echo $CONFIGURATION " build - Not bumping build number."
+fi
+{% endhighlight %}
 
 这段shell脚本的意思就是说，如果当前的配置是Release（Archive时该值为Release，直接在模拟器上运行是Debug），就设置build值为当前build值+1， 否则什么都不干。  
 

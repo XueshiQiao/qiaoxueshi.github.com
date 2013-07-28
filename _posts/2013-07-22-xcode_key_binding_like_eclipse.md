@@ -15,22 +15,23 @@ tags: []
 
 然后看看下面这段配置, (来自[gist](https://gist.github.com/gdavis/2829437),感谢作者[@gdavis](https://gist.github.com/gdavis) )
 
-
-	<key>GDI Commands</key>
-	<dict>
-	  	<key>GDI Duplicate Current Line</key>
-	  	<string>selectLine:, copy:, moveToEndOfLine:, insertNewline:, paste:, deleteBackward:</string>
-	  	<key>GDI Delete Current Line</key>
-	  	<string>moveToEndOfLine:, deleteToBeginningOfLine:, deleteBackward:, moveDown:, moveToEndOfLine:</string>
-	  	<key>GDI Move Current Line Up</key>
-	  	<string>selectLine:, cut:, moveUp:, moveToBeginningOfLine:, insertNewLine:, paste:, moveBackward:</string>
-	  	<key>GDI Move Current Line Down</key>
-	  	<string>selectLine:, cut:, moveDown:, moveToBeginningOfLine:, insertNewLine:, paste:, moveBackward:</string>
-	  	<key>GDI Insert Line Above</key>
-	  	<string>moveUp:, moveToEndOfLine:, insertNewline:</string>
-	  	<key>GDI Insert Line Below</key>
-	  	<string>moveToEndOfLine:, insertNewline:</string>
-	</dict>
+{% highlight xml %}
+<key>GDI Commands</key>
+<dict>
+  	<key>GDI Duplicate Current Line</key>
+  	<string>selectLine:, copy:, moveToEndOfLine:, insertNewline:, paste:, deleteBackward:</string>
+  	<key>GDI Delete Current Line</key>
+  	<string>moveToEndOfLine:, deleteToBeginningOfLine:, deleteBackward:, moveDown:, moveToEndOfLine:</string>
+  	<key>GDI Move Current Line Up</key>
+  	<string>selectLine:, cut:, moveUp:, moveToBeginningOfLine:, insertNewLine:, paste:, moveBackward:</string>
+  	<key>GDI Move Current Line Down</key>
+  	<string>selectLine:, cut:, moveDown:, moveToBeginningOfLine:, insertNewLine:, paste:, moveBackward:</string>
+  	<key>GDI Insert Line Above</key>
+  	<string>moveUp:, moveToEndOfLine:, insertNewline:</string>
+  	<key>GDI Insert Line Below</key>
+  	<string>moveToEndOfLine:, insertNewline:</string>
+</dict>
+{% endhighlight %}
 
 这个dict是一组可以设置快捷键的操作，里面的key是名称，对应的string是对应的一组操作，从名字本身也可以看出是什么意思，而且也可以根据这些自由装配成自己的别的快捷操作。
 
@@ -42,10 +43,10 @@ tags: []
 * GDI Insert Line Below 		在当前行下面增加一空行（不管光标是否在行尾）
 
 把这段配置放到上面提到的`IDETextKeyBindingSet.plist`里，放在文件的最后的这两行之前：
-
-		</dict>
-	</plist>
-
+{% highlight xml %}
+	</dict>
+</plist>
+{% endhighlight %}
 重启Xcode，在Xcode菜单中，打开`Preferences`，选中`Key Binding`，在右上方搜索`GDI`, 会出现类似下图的显示，如果没有的话，请检查上面的每步操作。
 
 ![img ](/assets/resources/key_binding.png) 

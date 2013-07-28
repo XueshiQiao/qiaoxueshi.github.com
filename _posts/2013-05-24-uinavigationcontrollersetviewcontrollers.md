@@ -11,13 +11,14 @@ tags: [iOS]
 <br />
 #Sample
 
-	NSMutableArray * viewControllers = [self.navigationController.viewControllers mutableCopy];
-	[viewControllers removeLastObject];
-	[viewControllers addObject:newController];
+{% highlight objc %}
+NSMutableArray * viewControllers = [self.navigationController.viewControllers mutableCopy];
+[viewControllers removeLastObject];
+[viewControllers addObject:newController];
 
-	[self.navigationController setViewControllers:viewControllers animated:YES];
-	// [viewControllers relase] // if non-arc
-
+[self.navigationController setViewControllers:viewControllers animated:YES];
+// [viewControllers relase] // if non-arc
+{% endhighlight %}
 
 感谢 Allen([Weibo](http://www.weibo.com/122678100)) 提供的代码和思路
 <br />

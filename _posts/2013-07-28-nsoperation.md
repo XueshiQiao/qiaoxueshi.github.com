@@ -61,11 +61,11 @@ State是通过这些keypath的KVO通知来隐式的得到，而不是显式的�
 取决于你的App的复杂性，可能会需要把一个大的任务分成多个子任务，这时NSOperation依赖就排上用场了。
 
 比如从服务器上下载和缩放图片的过程，你可能会想把下载图片作为一个operation，缩放作为另外一个（这样也可以复用下载图片和缩放图片的代码）。然后，一个图片在从服务器上下载下来之前是没有办法缩放的，于是我们说缩放图片的operation依赖从服务器上下载图片的operation，后者必须先完成，前者才能开始执行。用代码表示是这样的：
-
-	[resizingOperation addDependency:networkingOperation];
-	[operationQueue addOperation:networkingOperation];
-	[operationQueue addOperation:resizingOperation];
-
+{% highlight objc %}
+[resizingOperation addDependency:networkingOperation];
+[operationQueue addOperation:networkingOperation];
+[operationQueue addOperation:resizingOperation];
+{% endhighlight %}
 一个operation只有在它依赖的所有的operation的isFinished都为YES的时候才会开始执行。要记住添加到queue里的所有的operation的依赖关系，并避免循环依赖，比如A依赖B，B依赖A，这样会产生死锁。
 
 ##completionBlock

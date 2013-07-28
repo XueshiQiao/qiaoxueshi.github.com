@@ -57,76 +57,77 @@ Xcode插件其实就是一个Mac OS X bundle，所以可以参考下图创建一
 
 ##5. 实现我们的插件
 在第二步的时候我们设置了一个`Principal Class`，那么在Xcode里新建Objective-C类，名字和`Principal Class`设置的值保持一致。在实现文件中添加上`+ (void) pluginDidLoad: (NSBundle*) plugin`方法。 该方法会在Xcode加载插件的时候被调用，可以用来做一些初始化的操作。通常这个类是一个单例，并Observe了`NSApplicationDidFinishLaunchingNotification`，用来获得Xcode加载完毕的通知。
+{% highlight objc %}
++ (void) pluginDidLoad: (NSBundle*) plugin {
+	static id sharedPlugin = nil;
+	static dispatch_once_t once;
+	dispatch_once(&once, ^{
+		sharedPlugin = [[self alloc] init];
+	});
+}
 
-	+ (void) pluginDidLoad: (NSBundle*) plugin {
-		static id sharedPlugin = nil;
-		static dispatch_once_t once;
-		dispatch_once(&once, ^{
-			sharedPlugin = [[self alloc] init];
-		});
+- (id)init {
+	if (self = [super init]) {
+		[[NSNotificationCenter defaultCenter] addObserver:self 
+                        selector:@selector(applicationDidFinishLaunching:) 
+                            name:NSApplicationDidFinishLaunchingNotification 
+                          object:nil];
 	}
-	
-	- (id)init {
-		if (self = [super init]) {
-			[[NSNotificationCenter defaultCenter] addObserver:self 
-	                        selector:@selector(applicationDidFinishLaunching:) 
-	                            name:NSApplicationDidFinishLaunchingNotification 
-	                          object:nil];
-		}
-		return self;
-	}
-
-
+	return self;
+}
+{% endhighlight %}
 一旦接收到Xcode加载完毕的通知，就可以Observe需要的其他notification或者在菜单中添加菜单项或者访问Code Editor之类的UI组件。
 
 在我们的这个简单例子中，我们就在`Edit`下添加一个叫做`Custom Plugin`的菜单项，并设置一个`⌥ + c`快捷键。它的功能是使用`NSAlert`显示出我们在代码编辑器中选中的文本。我们需要通过观察`NSTextViewDidChangeSelectionNotification`并访问接收参数中的`NSTextView`，来获得被选中的文本。
+{% highlight objc %}
+- (void) applicationDidFinishLaunching: (NSNotification*) notification {
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                        selector:@selector(selectionDidChange:) 
+                            name:NSTextViewDidChangeSelectionNotification 
+                          object:nil];
 
-	- (void) applicationDidFinishLaunching: (NSNotification*) notification {
-	    [[NSNotificationCenter defaultCenter] addObserver:self 
-	                        selector:@selector(selectionDidChange:) 
-	                            name:NSTextViewDidChangeSelectionNotification 
-	                          object:nil];
-	
-	    NSMenuItem* editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
-	    if (editMenuItem) {
-	        [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-	
-	       NSMenuItem* newMenuItem = [[NSMenuItem alloc] initWithTitle:@"Custom Plugin" 
-	                                            action:@selector(showMessageBox:) 
-	                                     keyEquivalent:@"c"];
-	       [newMenuItem setTarget:self];
-	       [newMenuItem setKeyEquivalentModifierMask: NSAlternateKeyMask];
-	       [[editMenuItem submenu] addItem:newMenuItem];
-	       [newMenuItem release];
-	   }
-	}
-	
-	- (void) selectionDidChange: (NSNotification*) notification {
-	    if ([[notification object] isKindOfClass:[NSTextView class]]) {
-	        NSTextView* textView = (NSTextView *)[notification object];
-	
-	        NSArray* selectedRanges = [textView selectedRanges];
-	        if (selectedRanges.count==0) {
-	            return;
-	        }
-	
-	        NSRange selectedRange = [[selectedRanges objectAtIndex:0] rangeValue];
-	        NSString* text = textView.textStorage.string;
-	        selectedText = [text substringWithRange:selectedRange];
-	   }
-	}
-	
-	- (void) showMessageBox: (id) origin {
-	    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
-	    [alert setMessageText: selectedText];
-	    [alert runModal];
-	}
+    NSMenuItem* editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+    if (editMenuItem) {
+        [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+
+       NSMenuItem* newMenuItem = [[NSMenuItem alloc] initWithTitle:@"Custom Plugin" 
+                                            action:@selector(showMessageBox:) 
+                                     keyEquivalent:@"c"];
+       [newMenuItem setTarget:self];
+       [newMenuItem setKeyEquivalentModifierMask: NSAlternateKeyMask];
+       [[editMenuItem submenu] addItem:newMenuItem];
+       [newMenuItem release];
+   }
+}
+
+- (void) selectionDidChange: (NSNotification*) notification {
+    if ([[notification object] isKindOfClass:[NSTextView class]]) {
+        NSTextView* textView = (NSTextView *)[notification object];
+
+        NSArray* selectedRanges = [textView selectedRanges];
+        if (selectedRanges.count==0) {
+            return;
+        }
+
+        NSRange selectedRange = [[selectedRanges objectAtIndex:0] rangeValue];
+        NSString* text = textView.textStorage.string;
+        selectedText = [text substringWithRange:selectedRange];
+   }
+}
+
+- (void) showMessageBox: (id) origin {
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    [alert setMessageText: selectedText];
+    [alert runModal];
+}
+{% endhighlight %}
 
 你会发现在出现selectedText的地方会报错，在实现里添加上`NSString *selectedText`即可。
-
-	@implementation Plugin {
-	    NSString *selectedText;
-	}
+{% highlight objc %}
+@implementation Plugin {
+    NSString *selectedText;
+}
+{% endhighlight %}
 
 最终效果：  
 ![Image7 icon](/assets/resources/xcode_plugin_7.png)
