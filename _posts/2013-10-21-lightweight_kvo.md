@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "轻量级KVO实现[译]"
+title: "轻量级KVO[译]"
 image: "/assets/resources/2013-10-21-lightweight_kvo.png"
 image-width: ""
 image-height: ""
