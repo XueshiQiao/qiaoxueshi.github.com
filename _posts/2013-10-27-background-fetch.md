@@ -11,7 +11,7 @@ tags: [iOS]
 
 Background Fetch 是iOS7带来的非常Cool的新特性，开启Background Fetch的App会被系统在合适的时机执行后台任务的代码。比如这个场景：你每天晚上10点会通过自己的RSS阅读器App来阅读，系统可能会在10点之前执行App中设定的下载RSS最新资源的任务，当你打开RSS阅读器App的时候就显示出最新的内容。实现Background Fetch的步骤也是非常的简单，下面就来看一下。
 
-###开启Background Fetch
+###1、开启Background Fetch
 给一个App开启Background Fetch非常的简单，可以总结为三个步骤：
 ####Step 1 
 进入`Project`设置 -> `Capabilities` -> 设置`Background Modes`为ON -> 选中`Background Fetch`
@@ -61,7 +61,7 @@ Background Fetch 是iOS7带来的非常Cool的新特性，开启Background Fetch
 
 有个小细节是假如Background Fetch方法更新了UI的话，系统会刷新Home键切换App界面中的缩略图。
 
-###模拟Background Fetch
+###2、模拟Background Fetch
 创建了Background Fetch后，怎么来方面的模拟和测试呢？有两种方式，一种是在App被挂起后，系统执行Background Fetch，另外一种是App没有在运行，被系统唤醒执行Background Fetch方法。
 
 #### 情况1
@@ -76,9 +76,16 @@ Background Fetch 是iOS7带来的非常Cool的新特性，开启Background Fetch
 
 ![BG_Fetch04](/assets/resources/BG_Fetch04.png)
 
-完鸟，如果有地方写的不对，欢迎小伙版们指正，Have Fun~
+###3、Remote Notifications & Background Transfer Service
+Background Fetch适用于定期检查更新数据，如果想从服务端推送一条消息告诉客户端来执行某些操作的话，可以使用Remote Notifications，它和普通的Push Notification很相似，不同的是推送时的Payload不太一样以及客户端收到通知之后会执行一个的方法，和Background Fetch一样有30s的时间来做事情。你看到这里一定有个疑问，如果任务在30s内不能完成怎么破？比如下载音视频文件。Background Transfer Service闪亮出场了，感兴趣的话可以参考Ref里的第三条链接里的内容。
 
+###Ref
 
+* [iOS 7 SDK: Working with Background Fetch](http://mobile.tutsplus.com/tutorials/iphone/ios-7-sdk-working-with-background-fetch/)
+* iOS 7 by Tutorials
+* [iOS 7 SDK: Multitasking Enhancements](http://mobile.tutsplus.com/tutorials/iphone/ios-7-sdk-mutlitasking-enhancements/) 延伸阅读 : About Remote Notifications & Background Transfer Service
+
+完鸟，如果有写的不对的地方，欢迎小伙伴们指正，Have fun~
 
 
 
