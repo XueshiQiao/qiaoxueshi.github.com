@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "Background Fetch"
+title: "iOS7 之 Background Fetch"
 image-width: ""
 image-height: ""
 description: ""
-category: 
-tags: []
+category: iOS
+tags: [iOS]
 ---
 {% include JB/setup %}
 
-BackGround Fetch 是iOS7带来的非常Cool的新特性，开启Background Fetch的App会被系统在合适的时机执行后台任务的代码。比如这个场景：你每天晚上10点会通过自己的RSS阅读器App来阅读，系统可能会在10点之前执行App中设定的下载RSS最新资源的任务，当你打开RSS阅读器App的时候就显示出最新的内容。实现Background Fetch的步骤也是非常的简单，下面就来看一下。
+Background Fetch 是iOS7带来的非常Cool的新特性，开启Background Fetch的App会被系统在合适的时机执行后台任务的代码。比如这个场景：你每天晚上10点会通过自己的RSS阅读器App来阅读，系统可能会在10点之前执行App中设定的下载RSS最新资源的任务，当你打开RSS阅读器App的时候就显示出最新的内容。实现Background Fetch的步骤也是非常的简单，下面就来看一下。
 
 ###开启Background Fetch
 给一个App开启Background Fetch非常的简单，可以总结为三个步骤：
