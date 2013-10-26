@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "iOS7 之 Background Fetch"
+title: "Background Fetch"
 image-width: ""
 image-height: ""
 description: ""
