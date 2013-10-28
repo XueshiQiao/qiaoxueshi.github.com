@@ -29,7 +29,7 @@ Background Fetch 是iOS7带来的非常Cool的新特性，开启Background Fetch
 [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 {% endhighlight %}
 
-这段代码的意思是告诉系统，尽可能频繁的调用我们的Fetch方法。`MinimumBackgroundFetchInterval`参数值也可以是个时间间隔的数值，系统保证两次Fetch的时间间隔会不会小于这个值。这里设置为`UIApplicationBackgroundFetchIntervalMinimum`.
+`MinimumBackgroundFetchInterval`参数值是时间间隔的数值，系统保证两次Fetch的时间间隔不会小于这个值，不能保证每隔这个时间间隔都会调用。这里设置为`UIApplicationBackgroundFetchIntervalMinimum`，意思是告诉系统，尽可能频繁的调用我们的Fetch方法。
 
 ####Step 3
 开始实现我们的Fetch方法，在ApplicationDelegate类中加入下面这个方法：
