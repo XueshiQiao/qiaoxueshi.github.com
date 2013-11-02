@@ -77,13 +77,14 @@ Background Fetch 是iOS7带来的非常Cool的新特性，开启Background Fetch
 ![BG_Fetch04](/assets/resources/BG_Fetch04.png)
 
 ###3、Remote Notifications & Background Transfer Service
-Background Fetch适用于定期检查更新数据，如果想从服务端推送一条消息告诉客户端来执行某些操作的话，可以使用Remote Notifications，它和普通的Push Notification很相似，不同的是推送时的Payload不太一样以及客户端收到通知之后会执行一个的方法，和Background Fetch一样有30s的时间来做事情。你看到这里一定有个疑问，如果任务在30s内不能完成怎么破？比如下载音视频文件。Background Transfer Service闪亮出场了，感兴趣的话可以参考Ref里的第三条链接里的内容。
+Background Fetch适用于定期检查更新数据，如果想从服务端推送一条消息告诉客户端来执行某些操作的话，可以使用Remote Notifications，它和普通的Push Notification很相似，不同的是推送时的Payload不太一样以及客户端收到通知之后会执行一个的方法，和Background Fetch一样有30s的时间来做事情。你看到这里一定有个疑问，如果任务在30s内不能完成怎么破？比如下载音视频文件。Background Transfer Service闪亮出场了，感兴趣的话可以参考Ref里的第3、4条链接里的内容。
 
 ###Ref
 
 * [iOS 7 SDK: Working with Background Fetch](http://mobile.tutsplus.com/tutorials/iphone/ios-7-sdk-working-with-background-fetch/)
 * iOS 7 by Tutorials
 * [iOS 7 SDK: Multitasking Enhancements](http://mobile.tutsplus.com/tutorials/iphone/ios-7-sdk-mutlitasking-enhancements/) 延伸阅读 : About Remote Notifications & Background Transfer Service
+* [Multitasking in iOS 7](http://www.objc.io/issue-5/multitasking.html) （推荐，objc.io出品）
 
 完鸟，如果有写的不对的地方，欢迎小伙伴们指正，Have fun~
 
