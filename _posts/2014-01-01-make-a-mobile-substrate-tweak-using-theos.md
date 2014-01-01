@@ -22,7 +22,8 @@ tags: [iOS]
 * 安装dpkg ，首先安装MacPorts，可以通过它的[官网](http://www.macports.org/),根据自己的系统版本来选择。安装好之后，重启Terminal，执行`port version`，显示出版本号说明安装成功。如果提示`command not found`，尝试在`/etc/paths`文件中加入下面两个路径:`/opt/local/bin` `/opt/local/sbin`，需要使用root权限来编辑，比如用Vim的话:`sudo vi /etc/paths`. 重启Terminal，再次输入`port version`就应该会显示版本号了，然后执行`sudo port selfupdate`来更新一下,之后执行`sudo port install dpkg`来安装dpkg. 安装dpkg的目的是把我们写的tweak打成deb包。
 
 ####JailBreaked iPhone iOS 5/6
-* 安装OpenSSH，打开Cydia的主界面就能看到`OpenSSH Access How-To` 以及`Root Password How-To`的选项，可以按照它的提示一步一步安装，这里不赘述了，需要提醒的是一定要改掉root的密码，防止别人通过SSH连接到你的手机。这一步是为了后面我们通过SSH连接到手机，把deb包安装到手机上准备的。
+* 安装OpenSSH，打开Cydia的主界面就能看到`OpenSSH Access How-To` 以及`Root Password How-To`的选项，可以按照它的提示一步一步安装，这里不赘述了，需要提醒的是一定要改掉root的密码，防止别人通过SSH连接到你的手机。这一步是为了后面我们通过SSH连接到手机，把deb包安装到手机上准备的。     
+  iOS7上的Mobile Substrate还有bug，32位的系统下每次重启后需要重新安装Mobile Substrate才能正常使用, 64位今天貌似才能用。推荐暂时在iOS5/6的机器上测试[2014-01-01]。
 * apt. 在cydia中搜索Apt检查是否已经安装，没有安装就安装一下。
 * ldid. 全名是Link Identify Editor,也直接可以在Cydia中搜索全名安装。
 
