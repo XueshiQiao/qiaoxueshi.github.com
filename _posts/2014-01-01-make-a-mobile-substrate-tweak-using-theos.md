@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "使用Theos做一个简单的Mobile Substrate Tweak插件"
+title: "使用Theos做一个简单的Mobile Substrate Tweak"
 image: "/assets/resources/2014-01-01-make-a-mobile-substrate-tweak-using-theos-pic0.png"
 image-width: ""
 image-height: ""
