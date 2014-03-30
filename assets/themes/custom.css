@@ -1,0 +1,18 @@
+/* 文章 */
+.post-full .content { 
+	font-size: 16px;
+}
+
+/* 纯内容部分 */
+.post-full .content p  { 
+	line-height: 1.7;
+	text-indent: 34px;
+	letter-spacing: 1px;
+}
+
+/* 内容中的列表 */
+.post-full .content ul li  { 
+	font-size: 14px;
+	line-height: 1.7;
+	letter-spacing: 1px;
+}
