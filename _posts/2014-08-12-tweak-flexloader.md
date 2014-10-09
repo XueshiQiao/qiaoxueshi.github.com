@@ -11,7 +11,7 @@ tags: [iOS]
 {% include JB/setup %}
 
 ##介绍
-[FLEXLoader](https://github.com/Flipboard/FLEX)是一个我在上周末写的一个可以动态加载FLEX的开源越狱插件，它以加载动态库的方式注入到系统App和用户的App中(欢迎使用star, fork, clone等一切方法蹂躏我~~)。FLEX全称是"Flipboard Explorer"，是Flipboard团队开发一组调试和探测App的开源工具，功能非常强大，比如查看和修改View的层级结构，查看和修改堆内存中的对象信息等等，更多FLEX介绍和使用信息参考[这里](https://github.com/Flipboard/FLEX)。
+[FLEXLoader](https://github.com/qiaoxueshi/FLEXLoader)是一个我在上周末写的一个可以动态加载FLEX的开源越狱插件，它以加载动态库的方式注入到系统App和用户的App中(欢迎使用star, fork, clone等一切方法蹂躏我~~)。FLEX全称是"Flipboard Explorer"，是Flipboard团队开发一组调试和探测App的开源工具，功能非常强大，比如查看和修改View的层级结构，查看和修改堆内存中的对象信息等等，更多FLEX介绍和使用信息参考[这里](https://github.com/Flipboard/FLEX)。
 
 FLEXLoader参考了[RevealLoader](https://github.com/heardrwt/RevealLoader)，顾名思义，它是一个加载Reveal动态库的越狱插件，是一款非常方便的插件，如果你经常用Reveal来查看和调试，一定不要错过。我把它的源码做了一些修改，把Reveal的动态库改成了FLEX的动态库，因为FLEX官方只提供了源代码，所以我参考了Tony的这篇[文章](http://itony.me/774.html)编译了一个动态库，如有有兴趣，也可以直接用我已经构建好的Xcode工程[FLEXDynamicLibProject](https://github.com/qiaoxueshi/FLEXDynamicLibProject)来编译。
 
