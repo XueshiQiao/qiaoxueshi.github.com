@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Swift 之类型的协变与逆变"
-image: "/assets/resources/U5663P1117T4D2655F9DT20110129044829"
+image: "/assets/resources/U5663P1117T4D2655F9DT20110129044829.jpg"
 image-width: ""
 image-height: ""
 description: ""
@@ -10,9 +10,7 @@ tags: [iOS]
 ---
 {% include JB/setup %}
 
-Swift 之类型的协变与逆变
----
-###1 什么是协变与逆变
+### 1 什么是协变与逆变   
 刚开始看到协变(Covariance)和逆变(Contravariance)的时候，差点晕菜，反复查了一些资料，才稍有些自己的体会，难免有理解不对的地方，欢迎指出 :]
 
 > 在计算机科学和类型的领域内来看，变化(variance)这个词指的是两个类型之间的关系是如何影响从它们衍生出的两种复杂类型之间的关系的。相对于原始类型，这两种复杂类型之间的关系只能是不变(invariance)，协变(covariance)和逆变(contravariance)之中的某一种。
@@ -26,7 +24,7 @@ Swift 之类型的协变与逆变
 * 逆变：如果说`List<Cat>` 是 `List<Animal>`的`supertype`，也就是衍生类型的关系和原来类型（ Cat 与 Animal）的关系是相反的，那我们就说 List 是和它的原来类型逆变（反变）的。
 * 不变：如果说`List<Cat>` 既不是 `List<Animal>`的subtype，也不是supertype，也就是说没有关系，则说是不变的。
 
-###2 为什么要了解协变与逆变？
+### 2 为什么要了解协变与逆变？
 我们知道 subtype 是可以替换 supertype 的，反之则不行，比如说:
 
 ```
@@ -36,13 +34,13 @@ let cat:Cat = Animal();   //Wrong
 
 来看不同返回值类型的函数替换:
 
-```
+{% highlight Swift %}
 func animalF() -> Animal { return Animal() }
 func catF() -> Cat { return Cat() }
 
 let returnsAnimal: () -> Animal = catF //Right
 let returnsCat: () -> Cat = animalF //Wrong
-```
+{% endhighlight %}
 
 第一个赋值语句通过编译是正确的 () -> Cat 和 () -> Animal 的关系与 Cat 和 Animal 之间的关系一致，也就是说是在 Swift 中函数的返回值是协变的。
 
@@ -81,7 +79,7 @@ testCatAnimal(AnimalCat)
 testCatAnimal(AnimalAnimal)
 ```
 
-###3. 其他类型的协变和逆变
+### 3. 其他类型的协变和逆变
 
 上面我们提到了函数的参数和返回值的分别是逆变和协变，在 Swift 中除了函数，还有属性(property)，范型(Generic)等。
 
@@ -90,7 +88,7 @@ testCatAnimal(AnimalAnimal)
 对于范型来说，范型本身其实没有特殊的变化，它的变化与范型使用的环境紧密相关，如果是用作函数的返回值或者覆盖父类的 readonly 属性，它的协变的，如果用做函数的参数，它是逆变的，如果是用做覆盖父类的 readwrite 的属性，或者同时用做函数的返回值和参数，那它必须是不变的，也就是说范型类型必须和要求完全一致，不能使用 subtype 或者 supertype.
 
 
-###4 Reference
+### Reference
 
 1. [Swift 2.1 Function Types Conversion: Covariance and Contravariance](https://www.uraimo.com/2015/09/29/Swift2.1-Function-Types-Conversion-Covariance-Contravariance/)
 
